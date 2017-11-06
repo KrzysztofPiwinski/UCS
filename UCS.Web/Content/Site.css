@@ -1,24 +1,72 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    background: url('Background.jpg') top left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-/* Set padding to keep content from hitting the edges */
+header {
+    padding: 20px 0;
+    background-color: #023e84;
+}
+
+    header p {
+        color: #fff;
+    }
+
+    header h2 {
+        cursor: pointer;
+        margin: 10px 0;
+        font-size: 34px;
+        color: #fff;
+    }
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.login-box,
+.menu-box {
+    margin-top: 50px;
+    cursor: pointer;
+    display: table;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
+    .login-box div.opacity-box {
+        border: solid 1px #111;
+        height: 400px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.97);
+        padding: 0 10px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+        .login-box div.opacity-box p {
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .login-box div.opacity-box h2,
+        .menu-box div.opacity-box h2 {
+            margin: 0;
+        }
+
+        .login-box div.opacity-box:hover,
+        .menu-box div.opacity-box:hover {
+            background-color: rgb(255, 255, 255);
+        }
+
+    .menu-box div.opacity-box {
+        border: solid 1px #111;
+        height: 200px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.97);
+        padding: 0 10px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using UCS.Db.Entities;
@@ -24,9 +25,11 @@ namespace UCS.Db
             UserManager<Administrator> userManager = new UserManager<Administrator>(userStore);
             Administrator admin = new Administrator()
             {
-                Id = "99608a63-0da7-4716-95d1-4b2c6881d65a",
+                FirstName = "Krzysztof",
+                LastName = "Piwiński",
                 UserName = "krzysztof.piwinski@gmail.com",
-                Email = "krzysztof.piwinski@gmail.com"
+                Email = "krzysztof.piwinski@gmail.com",
+                AddedAt = DateTime.Now
             };
             userManager.Create(admin, "qwerty123");
             return new List<IdentityUser>() { admin };
