@@ -5,11 +5,12 @@
 {
     @Html.AntiForgeryToken()
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div class="col-sm-12 validation-box">
+        @if (Model.HasError)
+        {
+            <div class="col-sm-6 col-sm-offset-3 validation-box">
                 @Html.ValidationSummary()
             </div>
-        </div>
+        }
         <div class="col-sm-6 col-sm-offset-3 blue-box">
             <div class="col-sm-12">
                 @Html.TextBoxFor(l => l.Email, new { @placeholder = "Podaj adres e-mail..." })

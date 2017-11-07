@@ -16,8 +16,9 @@ namespace UCS.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            LayoutViewModel model = new LayoutViewModel();
+            MenuViewModel model = new MenuViewModel();
             model.UserName = GetEmail();
+            model.Permission = _permission;
             return View(model);
         }
 

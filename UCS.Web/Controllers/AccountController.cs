@@ -51,6 +51,7 @@ namespace UCS.Web.Controllers
         public ActionResult Login()
         {
             LoginViewModel model = new LoginViewModel();
+            model.HasError = false;
             return View(model);
         }
 
@@ -61,6 +62,13 @@ namespace UCS.Web.Controllers
             if (string.IsNullOrEmpty(model.Email))
             {
                 ModelState.AddModelError("", "Należy podać adres e-mail");
+            }
+            else
+            {
+                if (!model.Email.Contains('@'))
+                {
+                    ModelState.AddModelError("", "Należy podać prawidłowy adres e-mail");
+                }
             }
             if (string.IsNullOrEmpty(model.Password))
             {
@@ -88,6 +96,7 @@ namespace UCS.Web.Controllers
                 }
             }
 
+            model.HasError = true;
             return View(model);
         }
 

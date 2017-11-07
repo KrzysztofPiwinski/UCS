@@ -3,7 +3,7 @@ using UCS.Db.Entities;
 
 namespace UCS.Web.ViewModels
 {
-    public class MenuViewModel
+    public class MenuViewModel : LayoutViewModel
     {
         public List<PermissionEnum> Permission { get; set; }
     }
