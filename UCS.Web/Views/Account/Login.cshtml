@@ -1,0 +1,25 @@
+﻿@model LoginViewModel
+@using UCS.Web.ViewModels
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="col-sm-12 validation-box">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3 blue-box">
+            <div class="col-sm-12">
+                @Html.TextBoxFor(l => l.Email, new { @placeholder = "Podaj adres e-mail..." })
+            </div>
+            <div class="col-sm-12">
+                @Html.PasswordFor(l => l.Password, new { @placeholder = "Podaj hasło..." })
+            </div>
+            <div class="col-sm-12">
+                <input type="submit" class="btn btn-block" value="Zaloguj" />
+            </div>
+        </div>
+    </div>
+}

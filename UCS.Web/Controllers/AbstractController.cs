@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
 using UCS.Db;
@@ -10,9 +11,10 @@ namespace UCS.Web.Controllers
     {
         protected UCSContext _context;
         protected Student _student;
-        protected bool IsStudent;
+        protected bool _isStudent;
         protected Administrator _administrator;
-        protected bool IsAdministrator;
+        protected bool _isAdministrator;
+        protected List<PermissionEnum> _permission { get; set; }
 
         public AbstractController()
         {
@@ -23,7 +25,10 @@ namespace UCS.Web.Controllers
         {
             if (user != null && user.Identity.IsAuthenticated)
             {
-                IsAdministrator = true;
+                string userName = user.Identity.Name;
+                _administrator = _context.Users.SingleOrDefault(u => u.UserName == userName);
+                _isAdministrator = true;
+                _permission = _administrator.Permissions.Select(a => a.Permiss).ToList();
                 return true;
             }
             else
@@ -36,11 +41,29 @@ namespace UCS.Web.Controllers
                     if (studentDb != null)
                     {
                         _student = studentDb;
+                        _isStudent = true;
+                        _permission = new List<PermissionEnum>()
+                        {
+
+                        };
                         return true;
                     }
                 }
                 return false;
             }
+        }
+
+        public string GetEmail()
+        {
+            if (_student != null)
+            {
+                return _student.UserName;
+            }
+            if (_administrator != null)
+            {
+                return _administrator.UserName;
+            }
+            return null;
         }
     }
 }

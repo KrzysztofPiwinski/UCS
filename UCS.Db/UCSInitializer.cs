@@ -29,7 +29,15 @@ namespace UCS.Db
                 LastName = "Piwiński",
                 UserName = "krzysztof.piwinski@gmail.com",
                 Email = "krzysztof.piwinski@gmail.com",
-                AddedAt = DateTime.Now
+                AddedAt = DateTime.Now,
+                IsActive = true,
+                Permissions = new List<Permission>()
+                {
+                    new Permission()
+                    {
+                        Permiss = PermissionEnum.CHANGE_PASSWORD
+                    }
+                }
             };
             userManager.Create(admin, "qwerty123");
             return new List<IdentityUser>() { admin };

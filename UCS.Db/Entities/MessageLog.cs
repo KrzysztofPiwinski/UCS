@@ -2,7 +2,7 @@
 
 namespace UCS.Db.Entities
 {
-    class MessageLog
+    public class MessageLog
     {
         public int Id { get; set; }
         public DateTime AddedAt { get; set; }

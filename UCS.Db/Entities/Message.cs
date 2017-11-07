@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UCS.Db.Entities
 {
-    class Message
+    public class Message
     {
         public int Id { get; set; }
         public int? RootMessageLog { get; set; }

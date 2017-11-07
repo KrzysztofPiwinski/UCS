@@ -17,13 +17,16 @@ namespace UCS.Web.Controllers
             }
 
             LayoutViewModel model = new LayoutViewModel();
-            model.UserName = _student.UserName;
+            model.UserName = GetEmail();
             return View(model);
         }
 
         public ActionResult Index()
         {
-            Init(User);
+            if (Init(User))
+            {
+                return RedirectToAction("Menu", "Home");
+            }
 
             LayoutViewModel model = new LayoutViewModel();
             return View(model);

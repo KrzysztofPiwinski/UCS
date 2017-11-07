@@ -2,7 +2,7 @@
 
 namespace UCS.Db.Entities
 {
-    class Log
+    public class Log
     {
         public int Id { get; set; }
         public DateTime AddedAt { get; set; }
