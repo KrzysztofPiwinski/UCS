@@ -4,21 +4,24 @@ using System.Security.Principal;
 using System.Web.Mvc;
 using UCS.Db;
 using UCS.Db.Entities;
+using UCS.Web.Models.Repositories;
 
 namespace UCS.Web.Controllers
 {
     public abstract class AbstractController : Controller
     {
-        protected UCSContext _context;
+        private UserRepository _userRepository;
+        private StudentRepository _studentRepository;
         protected Student _student;
         protected bool _isStudent;
-        protected Administrator _administrator;
+        protected User _administrator;
         protected bool _isAdministrator;
         protected List<PermissionEnum> _permission { get; set; }
 
         public AbstractController()
         {
-            _context = new UCSContext();
+            _userRepository = new UserRepository();
+            _studentRepository = new StudentRepository();
         }
 
         public bool Init(IPrincipal user)
@@ -26,7 +29,7 @@ namespace UCS.Web.Controllers
             if (user != null && user.Identity.IsAuthenticated)
             {
                 string userName = user.Identity.Name;
-                _administrator = _context.Users.SingleOrDefault(u => u.UserName == userName);
+                _administrator = _userRepository.GetByUserName(userName);
                 _isAdministrator = true;
                 _permission = _administrator.Permissions.Select(a => a.Permiss).ToList();
                 return true;
@@ -37,7 +40,7 @@ namespace UCS.Web.Controllers
 
                 if (guid != null)
                 {
-                    Student studentDb = _context.Students.SingleOrDefault(s => s.Guid == guid.ToString());
+                    Student studentDb = _studentRepository.GetByGuid(guid.ToString());
                     if (studentDb != null)
                     {
                         _student = studentDb;

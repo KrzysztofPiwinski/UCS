@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using UCS.Db.Entities;
 using UCS.Web.ViewModels;
 
 namespace UCS.Web.Controllers
@@ -48,6 +49,16 @@ namespace UCS.Web.Controllers
 
         public ActionResult ChangePassword()
         {
+            if (!Init(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (!_permission.Contains(PermissionEnum.CHANGE_PASSWORD))
+            {
+                return RedirectToAction("Menu", "Home");
+            }
+
             ChangePasswordViewModel model = new ChangePasswordViewModel();
             model.UserName = GetEmail();
             model.HasError = false;
@@ -89,7 +100,7 @@ namespace UCS.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Nowe hasło musi zawierać przynajmniej jeden znak niebędący literą, cyfrę, jak również małą i wielką literę.");
+                    ModelState.AddModelError("", "Nowe hasło musi zawierać przynajmniej jeden znak niebędący literą, cyfrę, jak również małą i wielką literę");
                 }
             }
 

@@ -21,9 +21,9 @@ namespace UCS.Db
 
         private List<IdentityUser> GetAdmin()
         {
-            UserStore<Administrator> userStore = new UserStore<Administrator>(_context);
-            UserManager<Administrator> userManager = new UserManager<Administrator>(userStore);
-            Administrator admin = new Administrator()
+            UserStore<User> userStore = new UserStore<User>(_context);
+            UserManager<User> userManager = new UserManager<User>(userStore);
+            User admin = new User()
             {
                 FirstName = "Krzysztof",
                 LastName = "Piwiński",
@@ -33,10 +33,8 @@ namespace UCS.Db
                 IsActive = true,
                 Permissions = new List<Permission>()
                 {
-                    new Permission()
-                    {
-                        Permiss = PermissionEnum.CHANGE_PASSWORD
-                    }
+                    new Permission() {Permiss = PermissionEnum.CHANGE_PASSWORD },
+                    new Permission() {Permiss=PermissionEnum.USERS }
                 }
             };
             userManager.Create(admin, "qwerty123");

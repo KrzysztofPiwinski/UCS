@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Administrator.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\MessageFile.cs" />

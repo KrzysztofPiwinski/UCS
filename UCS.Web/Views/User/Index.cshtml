@@ -1,0 +1,22 @@
+﻿@model UsersViewModel
+@using UCS.Web.ViewModels
+
+<div class="row">
+    <div class="col-sm-3 col-sm-push-9 button-box">
+        <a href="@Url.Action("Add","User")" class="btn btn-block">Dodaj</a>
+    </div>
+</div>
+
+@foreach (UserViewModel user in Model.Users)
+{
+    <div class="row">
+        <div class="col-sm-12 table-box" @if (!user.IsActive) { <text> style="background-color:rgba(159, 159, 159, 0.90)" </text>  }>
+            <h4>@user.Email</h4>
+            <p>Data utworzenia: @user.AddedAt.ToString("dd.MM.yyyy HH:mm")</p>
+            <p>
+                <a href="@Url.Action("Edit", "User", new { id = user.Id })" class="btn btn-default">Edytuj</a>
+                <a href="@Url.Action("PasswordReset", "User", new { id = user.Id })" class="btn btn-default">Resetuj hasło</a>
+            </p>
+        </div>
+    </div>
+}

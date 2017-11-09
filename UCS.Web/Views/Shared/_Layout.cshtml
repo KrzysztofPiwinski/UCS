@@ -1,5 +1,6 @@
 ﻿@model LayoutViewModel
 @using UCS.Web.ViewModels
+@using UCS.Web.Models
 
 <!DOCTYPE html>
 <html>
@@ -27,6 +28,15 @@
     </header>
 
     <div class="container body-content">
+        @if (Session[Configuration.Information] != null)
+        {
+            <div class="row">
+                <div class="col-sm-12 information-box">
+                    @Session[Configuration.Information]
+                </div>
+            </div>
+            Session[Configuration.Information] = null;
+        }
         @RenderBody()
     </div>
 

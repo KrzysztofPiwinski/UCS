@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using UCS.Db.Entities;
 using UCS.Web.Models;
+using UCS.Web.Models.Repositories;
 using UCS.Web.ViewModels;
 
 namespace UCS.Web.Controllers
@@ -15,6 +16,12 @@ namespace UCS.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private UserRepository _repository = null;
+
+        public AccountController() : base()
+        {
+            _repository = new UserRepository();
+        }
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -77,7 +84,7 @@ namespace UCS.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                Administrator admin = _context.Users.SingleOrDefault(u => u.Email == model.Email);
+                User admin = _repository.GetByUserName(model.Email);
                 if (admin != null && admin.IsActive)
                 {
                     var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);

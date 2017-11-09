@@ -11,5 +11,6 @@ namespace UCS.Db.Entities
         public string LastName { get; set; }
         public bool IsActive { get; set; }
         public DateTime AddedAt { get; set; }
+        public DateTime? LastModifiedAt { get; set; }
     }
 }

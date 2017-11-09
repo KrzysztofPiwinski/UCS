@@ -13,8 +13,8 @@ namespace UCS.Db.Entities
         public string Title { get; set; }
         public string Content { get; set; }
         public bool IsEmail { get; set; }
-        public int? AdministratorId { get; set; }
-        public virtual Administrator Administrator { get; set; }
+        public int? UserId { get; set; }
+        public virtual User User { get; set; }
         public int? StudentId { get; set; }
         public virtual Student Student { get; set; }
         public virtual List<MessageLog> Logs { get; set; }

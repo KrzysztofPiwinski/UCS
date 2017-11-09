@@ -2,6 +2,7 @@
 {
     public enum PermissionEnum
     {
-        CHANGE_PASSWORD
+        CHANGE_PASSWORD,
+        USERS
     }
 }

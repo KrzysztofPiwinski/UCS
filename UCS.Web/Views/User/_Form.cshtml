@@ -1,0 +1,58 @@
+﻿@model UserFormViewModel
+@using UCS.Web.ViewModels
+@using UCS.Web.Models
+@{
+    string actionType = Model.ActionType == ActionTypeEnum.ADD ? "Add" : "Edit";
+    string submitText = Model.ActionType == ActionTypeEnum.ADD ? "Dodaj" : "Edytuj";
+}
+
+
+@using (Html.BeginForm(actionType, "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    if (Model.HasError)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-xs-12 validation-box">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-sm-6 col-xs-12 blue-box">
+            <div class="col-sm-12">
+                @Html.TextBoxFor(p => p.Email, new { @placeholder = "Podaj adres e-mail..." })
+            </div>
+            <div class="col-sm-12">
+                @Html.TextBoxFor(p => p.FirstName, new { @placeholder = "Podaj imię..." })
+            </div>
+            <div class="col-sm-12">
+                @Html.TextBoxFor(p => p.LastName, new { @placeholder = "Podaj nazwisko..." })
+            </div>
+            @if (Model.ActionType == ActionTypeEnum.ADD)
+            {
+                <div class="col-sm-12">
+                    @Html.PasswordFor(p => p.Password, new { @placeholder = "Podaj hasło..." })
+                </div>
+                <div class="col-sm-12">
+                    @Html.PasswordFor(p => p.ConfirmPassword, new { @placeholder = "Potwierdź hasło..." })
+                </div>
+            }
+            <div class="col-sm-12">
+                @Html.CheckBoxFor(p => p.IsActive)
+                @Html.LabelFor(p => p.IsActive, "Czy aktywne?")
+            </div>
+            <div class="col-sm-12">
+                <label>Uprawnienia:</label>
+                @foreach (string permission in Model.AllPermissions)
+                {
+                    bool Owned = Model.UserPermission != null && Model.UserPermission.Contains(permission);
+                    <p>@Html.CheckBox(permission, Owned)@EnumHelpers.GetPermissionDescription(permission)</p>
+                }
+            </div>
+            <div class="col-sm-6 col-sm-offset-6">
+                <input type="submit" class="btn btn-block" value="@submitText" />
+            </div>
+        </div>
+    </div>
+}
