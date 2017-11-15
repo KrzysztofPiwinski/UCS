@@ -219,10 +219,6 @@ namespace UCS.Web.Controllers
                     ModelState.AddModelError("", "Należy podać prawidłowy adres e-mail");
                 }
             }
-            if (_repository.GetByUserName(model.Email) != null)
-            {
-                ModelState.AddModelError("", "Konto z podanym adresem e-mail już istnieje");
-            }
 
             if (ModelState.IsValid)
             {

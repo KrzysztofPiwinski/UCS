@@ -101,12 +101,13 @@ namespace UCS.Web.Models
                 {
                     Student newStudentDb = new Student()
                     {
-                        AddedAt = DateTime.Now,
                         Guid = Guid.NewGuid().ToString("N"),
-                        IsActive = true,
-                        UserName = studentData.Email,
                         FirstName = studentData.FirstName,
-                        LastName = studentData.LastName
+                        LastName = studentData.LastName,
+                        UserName = studentData.Email,
+                        IsActive = true,
+                        AddedAt = DateTime.Now,
+                        LastActivity = DateTime.Now
                     };
                     context.Students.Add(newStudentDb);
                     context.SaveChanges();
@@ -115,6 +116,8 @@ namespace UCS.Web.Models
                 }
                 else
                 {
+                    studentDb.LastActivity = DateTime.Now;
+                    context.SaveChanges();
                     HttpContext.Current.Session["ucs_student_guid"] = studentDb.Guid;
                 }
             }

@@ -7,7 +7,7 @@ namespace UCS.Web.Models.DTOs
         [JsonProperty("email")]
         public string Email { get; set; }
 
-        [JsonProperty("fisrt_name")]
+        [JsonProperty("first_name")]
         public string FirstName { get; set; }
 
         [JsonProperty("last_name")]

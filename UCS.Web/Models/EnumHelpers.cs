@@ -18,6 +18,8 @@ namespace UCS.Web.Models
                     return "Zmiana hasła";
                 case 1:
                     return "Zarządzanie pracownikami";
+                case 2:
+                    return "Zarządzanie studentami";
                 default:
                     return "";
             }

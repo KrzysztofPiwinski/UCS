@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,6 +188,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LayoutViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\StudentsViewModel.cs" />
+    <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\UserFormViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
@@ -229,6 +232,7 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_Form.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

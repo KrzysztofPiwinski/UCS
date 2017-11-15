@@ -1,0 +1,54 @@
+﻿@model StudentsViewModel
+@using UCS.Web.ViewModels
+
+<div class="row">
+    <div class="col-sm-12 table-box">
+        <table class="table table-responsive">
+            <thead>
+                <tr class="text-center">
+                    <th>E-mail</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Data zapisania</th>
+                    <th>Data ostatniej aktywności</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StudentViewModel student in Model.Students)
+                {
+                    <tr>
+                        <td>@student.UserName</td>
+                        <td>@student.FirstName</td>
+                        <td>@student.LastName</td>
+                        <td>@student.AddedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@student.LastActivity.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td class="white-a">
+                            @if (student.DeletedAt.HasValue)
+                            {
+                                <a href="@Url.Action("ChangeStatus", "Student", new { id = student.Id, page = Model.CurrentPage })">Aktywuj</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ChangeStatus", "Student", new { id = student.Id, page = Model.CurrentPage })">Dezaktywuj</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="btn-group">
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default disabled">@i</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default">@i</a>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@
     public enum PermissionEnum
     {
         CHANGE_PASSWORD,
-        USERS
+        USERS,
+        STUDENTS
     }
 }

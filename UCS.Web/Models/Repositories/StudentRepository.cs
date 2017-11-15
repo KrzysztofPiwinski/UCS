@@ -12,12 +12,27 @@ namespace UCS.Web.Models.Repositories
 
         public Student GetByGuid(string guid)
         {
-            return _context.Students.Single(s => s.Guid == guid);
+            return _context.Students.SingleOrDefault(s => s.Guid == guid);
+        }
+
+        public Student GetById(int id)
+        {
+            return _context.Students.SingleOrDefault(s => s.Id == id);
         }
 
         public List<Student> GetAll()
         {
             return _context.Students.ToList();
+        }
+
+        public List<Student> GetPage(int page)
+        {
+            return _context.Students
+                .OrderBy(s => s.DeletedAt.HasValue)
+                .ThenBy(s => s.UserName)
+                .Skip((page - 1) * Configuration.PageSize)
+                .Take(Configuration.PageSize)
+                .ToList();
         }
 
         public void Add(Student studentDb)
@@ -28,13 +43,6 @@ namespace UCS.Web.Models.Repositories
 
         public void Edit(Student studentDb)
         {
-            studentDb.LastModifiedAt = DateTime.Now;
-            _context.SaveChanges();
-        }
-
-        public void Delete(Student studentDb)
-        {
-            studentDb.IsActive = false;
             _context.SaveChanges();
         }
     }
