@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UCS.Db;
 using UCS.Db.Entities;
@@ -41,8 +40,20 @@ namespace UCS.Web.Models.Repositories
             _context.SaveChanges();
         }
 
+        public void AddCategory(Student studentDb)
+        {
+            _context.StudentCategories.AddRange(studentDb.Categories);
+            _context.SaveChanges();
+        }
+
         public void Edit(Student studentDb)
         {
+            _context.SaveChanges();
+        }
+
+        public void RemoveCategory(Student studentDb)
+        {
+            _context.StudentCategories.RemoveRange(studentDb.Categories);
             _context.SaveChanges();
         }
     }

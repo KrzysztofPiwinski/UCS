@@ -3,6 +3,22 @@
 @using UCS.Db.Entities
 
 <div class="row">
+    @if (Model.IsStudent)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">
+            <div class="opacity-box" onclick="document.location ='@Url.Action("Choose","Category")';">
+                <h2>Wybór kategorii</h2>
+            </div>
+        </div>
+    }
+    @if (Model.Permission.Contains(PermissionEnum.CATEGORIES))
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">
+            <div class="opacity-box" onclick="document.location ='@Url.Action("Index","Category")';">
+                <h2>Kategorie wiadomości</h2>
+            </div>
+        </div>
+    }
     @if (Model.Permission.Contains(PermissionEnum.STUDENTS))
     {
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">

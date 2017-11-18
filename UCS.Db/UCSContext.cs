@@ -12,6 +12,8 @@ namespace UCS.Db
         public DbSet<MessageFile> MessageFiles { get; set; }
         public DbSet<MessageLog> MessageLogs { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<StudentCategory> StudentCategories { get; set; }
 
         public static UCSContext Create()
         {

@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\StudentCategory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Message.cs" />

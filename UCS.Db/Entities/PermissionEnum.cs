@@ -4,6 +4,7 @@
     {
         CHANGE_PASSWORD,
         USERS,
-        STUDENTS
+        STUDENTS,
+        CATEGORIES,
     }
 }

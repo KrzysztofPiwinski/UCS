@@ -110,8 +110,20 @@ header {
     }
 
     .blue-box p {
-        font-size: 14px;
+        font-size: 16px;
         color: #fff;
+    }
+
+        .blue-box p label {
+            font-weight: normal;
+            cursor: pointer;
+            font-size:16px;
+        }
+
+    .blue-box h3 {
+        color: #fff;
+        margin-top: 0;
+        margin-bottom: 20px;
     }
 
 .table-box {

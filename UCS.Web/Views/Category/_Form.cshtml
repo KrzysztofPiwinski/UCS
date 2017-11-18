@@ -1,0 +1,30 @@
+﻿@model CategoryFormViewModel
+@using UCS.Web.ViewModels
+@using UCS.Web.Models
+@{
+    string actionType = Model.ActionType == ActionTypeEnum.ADD ? "Add" : "Edit";
+    string submitText = Model.ActionType == ActionTypeEnum.ADD ? "Dodaj" : "Edytuj";
+}
+
+@using (Html.BeginForm(actionType, "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    if (Model.HasError)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-xs-12 validation-box">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-sm-6 col-xs-12 blue-box">
+            <div class="col-sm-12">
+                @Html.TextBoxFor(p => p.Name, new { @placeholder = "Podaj nazwę..." })
+            </div>
+            <div class="col-sm-6 col-sm-offset-6">
+                <input type="submit" class="btn btn-block" value="@submitText" />
+            </div>
+        </div>
+    </div>
+}

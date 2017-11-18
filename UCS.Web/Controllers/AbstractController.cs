@@ -45,10 +45,7 @@ namespace UCS.Web.Controllers
                     {
                         _student = studentDb;
                         _isStudent = true;
-                        _permission = new List<PermissionEnum>()
-                        {
-
-                        };
+                        _permission = new List<PermissionEnum>();
                         return true;
                     }
                 }

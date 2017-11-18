@@ -1,0 +1,25 @@
+﻿@model CategoryChooseFormViewModel
+@using UCS.Web.ViewModels
+
+@using (Html.BeginForm("Choose", "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-12 blue-box">
+            <div class="col-sm-12">
+                <h3>Wybierz interesujące Cię kategorie:</h3>
+                @foreach (string category in Model.AllCategory)
+                {
+                    bool selected = Model.UserCategory.Contains(category);
+                    <p>
+                        <label>@Html.CheckBox(category, selected) @category</label>
+                    </p>
+                }
+            </div>
+            <div class="col-sm-6 col-sm-offset-6">
+                <input type="submit" class="btn btn-block" value="Zatwierdź" />
+            </div>
+        </div>
+    </div>
+}

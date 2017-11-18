@@ -19,6 +19,7 @@ namespace UCS.Web.Controllers
             MenuViewModel model = new MenuViewModel();
             model.UserName = GetEmail();
             model.Permission = _permission;
+            model.IsStudent = _isStudent;
             return View(model);
         }
 

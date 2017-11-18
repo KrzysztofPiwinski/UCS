@@ -1,0 +1,34 @@
+﻿@model CategoriesViewModel
+@using UCS.Web.ViewModels
+
+<div class="row">
+    <div class="col-sm-3 col-sm-push-9 button-box">
+        <a href="@Url.Action("Add","Category")" class="btn btn-block">Dodaj</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 table-box">
+        <table class="table table-responsive">
+            <thead>
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (CategoryViewModel category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>@category.Name</td>
+                        <td class="white-a">
+                            <a href="@Url.Action("Edit","Category", new { id=category.Id})">Edytuj</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
