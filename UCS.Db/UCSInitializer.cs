@@ -33,7 +33,6 @@ namespace UCS.Db
                 IsActive = true,
                 Permissions = new List<Permission>()
                 {
-                    new Permission() {Permiss = PermissionEnum.CHANGE_PASSWORD },
                     new Permission() {Permiss=PermissionEnum.USERS }
                 }
             };

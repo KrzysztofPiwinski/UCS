@@ -47,7 +47,7 @@
                 @foreach (string permission in Model.AllPermissions)
                 {
                     bool Owned = Model.UserPermission != null && Model.UserPermission.Contains(permission);
-                    <p>@Html.CheckBox(permission, Owned)@EnumHelpers.GetPermissionDescription(permission)</p>
+                    <p><label>@Html.CheckBox(permission, Owned) @EnumHelpers.GetPermissionDescription(permission)</label></p>
                 }
             </div>
             <div class="col-sm-6 col-sm-offset-6">

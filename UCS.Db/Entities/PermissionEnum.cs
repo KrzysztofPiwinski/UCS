@@ -2,9 +2,12 @@
 {
     public enum PermissionEnum
     {
-        CHANGE_PASSWORD,
         USERS,
         STUDENTS,
         CATEGORIES,
+        SEND_EMAIL,
+        VIEW_ALL_EMAIL,
+        CHAT,
+        VIEW_ALL_CHATS
     }
 }

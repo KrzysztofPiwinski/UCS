@@ -15,6 +15,7 @@ namespace UCS.Db.Entities
         public DateTime AddedAt { get; set; }
         public DateTime? LastModifiedAt { get; set; }
         public virtual List<Permission> Permissions { get; set; }
+        public virtual List<Message> Messages { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

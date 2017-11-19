@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCS.Web", "UCS.Web\UCS.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCS.Db", "UCS.Db\UCS.Db.csproj", "{4FC57E3C-D7CC-483F-B813-85F0B135A371}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCS.Api", "UCS.Api\UCS.Api.csproj", "{D32692AD-2462-4A4A-AC1D-6801F2E1A16C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4FC57E3C-D7CC-483F-B813-85F0B135A371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FC57E3C-D7CC-483F-B813-85F0B135A371}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FC57E3C-D7CC-483F-B813-85F0B135A371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32692AD-2462-4A4A-AC1D-6801F2E1A16C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32692AD-2462-4A4A-AC1D-6801F2E1A16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32692AD-2462-4A4A-AC1D-6801F2E1A16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32692AD-2462-4A4A-AC1D-6801F2E1A16C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

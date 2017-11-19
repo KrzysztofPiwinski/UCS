@@ -38,16 +38,35 @@
             </tbody>
         </table>
         <div class="btn-group">
-            @for (int i = 1; i <= Model.PageCount; i++)
+            @if (Model.PageCount <= 5)
             {
-                if (i == Model.CurrentPage)
+                for (int i = 1; i <= Model.PageCount; i++)
                 {
-                    <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default disabled">@i</a>
+                    if (i == Model.CurrentPage)
+                    {
+                        <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default disabled">@i</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default">@i</a>
+                    }
                 }
-                else
+            }
+            else
+            {
+                for (int i = 1; i <= 5; i++)
                 {
-                    <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default">@i</a>
+                    if (i == Model.CurrentPage)
+                    {
+                        <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default disabled">@i</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Student", new { page = @i })" class="btn btn-default">@i</a>
+                    }
                 }
+                <a  class="btn disabled">...</a>
+                <a href="@Url.Action("Index", "Student", new { page = Model.PageCount })" class="btn btn-default">@Model.PageCount</a>
             }
         </div>
     </div>

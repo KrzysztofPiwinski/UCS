@@ -95,6 +95,19 @@ header {
         font-size: 16px;
     }
 
+    .blue-box textarea,
+    .blue-box select {
+        margin: 10px 0;
+        padding: 5px 10px;
+        resize: none;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .blue-box textarea {
+        height: 15em;
+    }
+
     .blue-box input[type=submit] {
         margin: 30px 0 10px 0;
         padding: 5px 10px;
@@ -117,7 +130,7 @@ header {
         .blue-box p label {
             font-weight: normal;
             cursor: pointer;
-            font-size:16px;
+            font-size: 14px;
         }
 
     .blue-box h3 {

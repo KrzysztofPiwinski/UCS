@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using UCS.Db.Entities;
 
 namespace UCS.Web.Models
@@ -15,11 +12,13 @@ namespace UCS.Web.Models
             switch (p)
             {
                 case 0:
-                    return "Zmiana hasła";
-                case 1:
                     return "Zarządzanie pracownikami";
-                case 2:
+                case 1:
                     return "Zarządzanie studentami";
+                case 2:
+                    return "Zarządzanie kategoriami wiadomości e-mail";
+                case 3:
+                    return "Wysyłanie wiadomości e-mail";
                 default:
                     return "";
             }

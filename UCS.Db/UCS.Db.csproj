@@ -63,7 +63,6 @@
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\MessageFile.cs" />
-    <Compile Include="Entities\MessageLog.cs" />
     <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\PermissionEnum.cs" />
     <Compile Include="Entities\Student.cs" />

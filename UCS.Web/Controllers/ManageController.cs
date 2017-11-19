@@ -54,7 +54,7 @@ namespace UCS.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            if (!_permission.Contains(PermissionEnum.CHANGE_PASSWORD))
+            if (!_isAdministrator)
             {
                 return RedirectToAction("Menu", "Home");
             }

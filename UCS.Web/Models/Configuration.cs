@@ -3,6 +3,6 @@
     public static class Configuration
     {
         public const string Information = "Information";
-        public const int PageSize = 1;
+        public const int PageSize = 2;
     }
 }

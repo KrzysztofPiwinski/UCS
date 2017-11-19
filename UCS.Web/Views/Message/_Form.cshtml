@@ -1,0 +1,29 @@
+﻿@model MessageFormViewModel
+@using UCS.Web.ViewModels
+
+@using (Html.BeginForm("Add", "Message", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    if (Model.HasError)
+    {
+        <div class="row">
+            <div class="col-sm-6 col-xs-12 validation-box">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+    }
+    <div class="row blue-box">
+        <div class="col-sm-12">
+            @Html.TextBoxFor(m => m.Title, new { @placeholder = "Podaj tytuł wiadomości..." })
+        </div>
+        <div class="col-sm-12">
+            @Html.TextAreaFor(m => m.Content, new { @placeholder = "Podaj treść wiadomości..." })
+        </div>
+        <div class="col-sm-6 col-sm-offset-6 col-sm-pull-6">
+            @Html.DropDownListFor(m => m.Category, Model.Categories)
+        </div>
+        <div class="col-sm-3 col-sm-push-9">
+            <input type="submit" class="btn btn-block" value="Wyślij wiadomość" />
+        </div>
+    </div>
+}

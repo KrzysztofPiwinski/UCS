@@ -11,6 +11,19 @@
             </div>
         </div>
     }
+    @if (Model.Permission.Contains(PermissionEnum.SEND_EMAIL))
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">
+            <div class="opacity-box" onclick="document.location ='@Url.Action("Add","Message")';">
+                <h2>Nowa wiadomość e-mail</h2>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">
+            <div class="opacity-box" onclick="document.location ='@Url.Action("Index","Message")';">
+                <h2>Wysłane wiadomości e-mail</h2>
+            </div>
+        </div>
+    }
     @if (Model.Permission.Contains(PermissionEnum.CATEGORIES))
     {
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">
@@ -35,7 +48,7 @@
             </div>
         </div>
     }
-    @if (Model.Permission.Contains(PermissionEnum.CHANGE_PASSWORD))
+    @if (!Model.IsStudent)
     {
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box">
             <div class="opacity-box" onclick="document.location ='@Url.Action("ChangePassword","Manage")';">

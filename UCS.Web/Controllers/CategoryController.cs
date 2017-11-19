@@ -209,8 +209,7 @@ namespace UCS.Web.Controllers
                 }
             }
             _studentRepository.AddCategory(studentDb);
-
-
+            
             return RedirectToAction("Menu", "Home");
         }
     }
