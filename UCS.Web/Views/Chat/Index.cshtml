@@ -1,0 +1,30 @@
+﻿@model ChatThreadsViewModel
+@using UCS.Web.ViewModels
+@{
+    int a = 0;
+}
+
+<div class="row">
+    <div class="col-sm-3 col-sm-push-9 button-box">
+        @if (Model.ChatRecipient == UCS.Web.Models.ChatRecipientEnum.STUDENT)
+        {
+            <a href="@Url.Action("AddToStudent","Chat")" class="btn btn-block">Napisz wiadomość</a>
+        }
+        else if (Model.ChatRecipient == UCS.Web.Models.ChatRecipientEnum.USER)
+        {
+            <a href="@Url.Action("AddToAdmin","Chat")" class="btn btn-block">Napisz wiadomość</a>
+        }
+    </div>
+</div>
+<div class="row thread">
+    @foreach (ChatThreadViewModel thread in Model.Threads)
+    {
+        string color = a++ % 2 == 1 ? "grey" : "white";
+        string isRead = thread.IsRead ? string.Empty : "notRead";
+        <hr />
+        <div class="col-sm-12 @color" onclick="document.location='@Url.Action("Details","Chat", new { id=thread.Id})';">
+            <p class="pull-right @isRead">Data ostatniej wiadomości: @thread.AddedAt</p>
+            <h4 class="@isRead">@thread.Title <small>(@thread.Author)</small></h4>
+        </div>
+    }
+</div>

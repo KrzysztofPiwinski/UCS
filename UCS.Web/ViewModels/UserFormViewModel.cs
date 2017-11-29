@@ -13,8 +13,8 @@ namespace UCS.Web.ViewModels
         public bool IsActive { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        public List<string> AllPermissions { get; set; }
-        public List<string> UserPermission { get; set; }
+        public List<PermissionEnum> AllPermissions { get; set; }
+        public List<PermissionEnum> UserPermission { get; set; }
         public ActionTypeEnum ActionType { get; set; }
 
         public static UserFormViewModel FromDb(User userDb)
@@ -25,7 +25,7 @@ namespace UCS.Web.ViewModels
                 LastName = userDb.LastName,
                 Email = userDb.Email,
                 IsActive = userDb.IsActive,
-                UserPermission = userDb.Permissions.Select(p => p.Permiss.ToString()).ToList()
+                UserPermission = userDb.Permissions.Select(p => p.Permiss).ToList()
             };
 
             return model;

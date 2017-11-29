@@ -8,6 +8,5 @@
         SEND_EMAIL,
         VIEW_ALL_EMAIL,
         CHAT,
-        VIEW_ALL_CHATS
     }
 }

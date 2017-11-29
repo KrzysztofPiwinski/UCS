@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
-using UCS.Db;
 using UCS.Db.Entities;
 using UCS.Web.Models.Repositories;
 
@@ -59,10 +58,11 @@ namespace UCS.Web.Controllers
             {
                 return _student.UserName;
             }
-            if (_administrator != null)
+            else if (_administrator != null)
             {
                 return _administrator.UserName;
             }
+
             return null;
         }
     }

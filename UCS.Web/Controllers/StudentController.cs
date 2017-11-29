@@ -34,14 +34,14 @@ namespace UCS.Web.Controllers
                 page = 1;
             }
 
-            int pageCount = (int)Math.Ceiling(_repository.GetAll().Count / (double)Configuration.PageSize);
+            int pageCount = (int)Math.Ceiling(_repository.GetAll().Count / (double)Configuration.PAGE_SIZE);
 
             if (pageCount > 0 && pageCount < page)
             {
                 page = pageCount;
             }
-            List<Student> studentsDb = _repository.GetPage(page);
 
+            List<Student> studentsDb = _repository.GetPage(page);
 
             StudentsViewModel model = StudentsViewModel.FromDb(studentsDb);
             model.UserName = GetEmail();
@@ -63,7 +63,7 @@ namespace UCS.Web.Controllers
             }
 
             Student studentDb = _repository.GetById(id);
-            if(studentDb!=null)
+            if(studentDb != null)
             {
                 if(studentDb.DeletedAt.HasValue)
                 {
@@ -75,6 +75,7 @@ namespace UCS.Web.Controllers
                     studentDb.DeletedAt = DateTime.Now;
                     Session[Configuration.Information] = $"Student {studentDb.UserName} został dezaktywowany.";
                 }
+
                 _repository.Edit(studentDb);
             }
 

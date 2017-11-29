@@ -26,8 +26,12 @@ namespace UCS.Api.Controllers
         {
             HttpResponseMessage response = null;
 
-            if (message == null || message.CategoryId < 1 || !context.Categories.Any(c => c.Id == message.CategoryId)
-                || string.IsNullOrEmpty(message.Content) || string.IsNullOrEmpty(message.Title) || string.IsNullOrEmpty(message.UserId))
+            if (message == null
+                || message.CategoryId < 1 
+                || !context.Categories.Any(c => c.Id == message.CategoryId)
+                || string.IsNullOrEmpty(message.Content)
+                || string.IsNullOrEmpty(message.Title)
+                || string.IsNullOrEmpty(message.UserId))
             {
                 response = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 return response;
@@ -40,7 +44,9 @@ namespace UCS.Api.Controllers
                 return response;
             }
 
-            List<Student> studentsDb = context.Students.Where(s => s.Categories.Any(c => c.CategoryId == message.CategoryId)).ToList();
+            List<Student> studentsDb = context.Students
+                .Where(s => s.Categories.Any(c => c.CategoryId == message.CategoryId))
+                .ToList();
 
             Message messageDb = new Message()
             {
@@ -57,7 +63,7 @@ namespace UCS.Api.Controllers
 
             foreach (string email in studentsDb.Select(s => s.UserName))
             {
-                //MailHelpers.Send(email, messageDb.Title, messageDb.Content);
+                MailHelpers.Send(email, messageDb.Title, messageDb.Content);
             }
 
             response = new HttpResponseMessage(HttpStatusCode.OK);

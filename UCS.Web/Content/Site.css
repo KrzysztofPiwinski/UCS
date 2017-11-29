@@ -8,7 +8,7 @@
 
 header {
     padding: 10px 0;
-    background-color: #023e84;
+    background-color: rgba(2, 62, 132,0.8);
     margin-bottom: 20px;
 }
 
@@ -39,7 +39,7 @@ header {
         border: solid 1px #111;
         height: 400px;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.97);
+        background-color: rgba(255, 255, 255, 0.8);
         padding: 0 10px;
         display: table-cell;
         vertical-align: middle;
@@ -58,14 +58,14 @@ header {
 
         .login-box div.opacity-box:hover,
         .menu-box div.opacity-box:hover {
-            background-color: rgb(255, 255, 255);
+            background-color: rgba(255, 255, 255, 0.95);
         }
 
     .menu-box div.opacity-box {
         border: solid 1px #111;
         height: 200px;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.97);
+        background-color: rgba(255, 255, 255, 0.8);
         padding: 0 10px;
         display: table-cell;
         vertical-align: middle;
@@ -80,10 +80,43 @@ header {
     color: #fff;
 }
 
+.chat {
+    padding: 0;
+}
+
+    .chat h2 {
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat#chats {
+        overflow-y: auto;
+        height: 300px;
+    }
+
+    .chat textarea {
+        margin-top: 10px;
+        padding: 5px 10px;
+        resize: none;
+        width: 100%;
+        font-size: 16px;
+        height: 6em;
+        border: none;
+    }
+
+    .chat input[type=submit] {
+        margin: 10px 0;
+        padding: 5px 10px;
+        width: 100%;
+        border-radius: 0;
+        background-color: #fff;
+        font-size: 18px;
+    }
+
 .blue-box {
     margin: 10px;
     padding: 30px 0;
-    background-color: rgba(2, 62, 132,0.9);
+    background-color: rgba(2, 62, 132,0.8);
 }
 
     .blue-box input[type=text],
@@ -141,7 +174,7 @@ header {
 
 .table-box {
     margin: 0 10px 10px 10px;
-    background-color: rgba(2, 62, 132,0.9);
+    background-color: rgba(2, 62, 132,0.8);
     padding: 10px 20px;
     color: #fff;
 }
@@ -180,7 +213,7 @@ table th {
 .button-box {
     margin: 10px;
     padding: 15px 0;
-    background-color: rgba(2, 62, 132, 0.9);
+    background-color: rgba(2, 62, 132, 0.8);
 }
 
     .button-box a {
@@ -197,3 +230,89 @@ table th {
     color: #fff;
     background-color: #00b1ff;
 }
+
+.thread .col-sm-12 {
+    margin: 0 !important;
+}
+
+.thread h4 {
+    margin: 0;
+    padding: 20px 0;
+    font-size: 22px;
+}
+
+h4.notRead,
+h4.notRead small,
+p.notRead {
+    font-weight: bold;
+}
+
+.thread .grey {
+    background-color: rgba(158, 158, 158,0.8);
+    cursor: pointer;
+}
+
+.thread .white {
+    background-color: rgba(255,255,255,0.8);
+    cursor: pointer;
+}
+
+.thread hr {
+    margin: 5px 0;
+    border-color: black;
+}
+
+.thread small {
+    color: #111;
+}
+
+.chat {
+    background-color: rgba(255,255,255,0.8);
+    padding: 10px;
+}
+
+    .chat p {
+        text-align: right;
+        margin: 0;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+
+    .chat .blue div {
+        text-align: right;
+    }
+
+    .chat .grey div {
+        text-align: left;
+    }
+
+    .chat .blue small,
+    .chat .grey small {
+        color: #fff;
+        font-size: 16px;
+    }
+
+        .chat .blue small a,
+        .chat .grey small a {
+            color: #fff;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+            .chat .blue small a img,
+            .chat .grey small a img {
+                width: 20px;
+                height: auto;
+            }
+
+    .chat .blue div {
+        background-color: blue;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }
+
+    .chat .grey div {
+        background-color: grey;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }

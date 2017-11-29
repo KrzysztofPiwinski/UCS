@@ -1,6 +1,7 @@
 ﻿@model UserFormViewModel
 @using UCS.Web.ViewModels
 @using UCS.Web.Models
+@using UCS.Db.Entities
 @{
     string actionType = Model.ActionType == ActionTypeEnum.ADD ? "Add" : "Edit";
     string submitText = Model.ActionType == ActionTypeEnum.ADD ? "Dodaj" : "Edytuj";
@@ -44,10 +45,10 @@
             </div>
             <div class="col-sm-12">
                 <label>Uprawnienia:</label>
-                @foreach (string permission in Model.AllPermissions)
+                @foreach ( PermissionEnum permission in Model.AllPermissions)
                 {
                     bool Owned = Model.UserPermission != null && Model.UserPermission.Contains(permission);
-                    <p><label>@Html.CheckBox(permission, Owned) @EnumHelpers.GetPermissionDescription(permission)</label></p>
+                    <p><label>@Html.CheckBox(permission.ToString(), Owned) @permission.GetDescription()</label></p>
                 }
             </div>
             <div class="col-sm-6 col-sm-offset-6">

@@ -31,17 +31,8 @@ namespace UCS.Web.Models.Repositories
         {
             UserStore<User> userStore = new UserStore<User>(_context);
             UserManager<User> userManager = new UserManager<User>(userStore);
-
             IdentityResult result = userManager.Create(userDb, password);
-
-            if (result.Succeeded)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return result.Succeeded;
         }
 
         public void Edit(User userDb)
@@ -63,7 +54,6 @@ namespace UCS.Web.Models.Repositories
             UserManager<User> userManager = new UserManager<User>(userStore);
             userManager.RemovePassword(userDb.Id);
             userManager.AddPassword(userDb.Id, password);
-
             return password;
         }
     }

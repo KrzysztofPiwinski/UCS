@@ -1,0 +1,24 @@
+﻿@model ChatsViewModel
+@using UCS.Web.ViewModels
+@using UCS.Web.Models
+
+@foreach (ChatViewModel thread in Model.Chats)
+{
+    string c = thread.IsFromMe ? "blue" : "grey";
+    <div class="col-sm-12 @c">
+        <p>Data wysłania: @thread.AddedAt  @thread.Author</p>
+        <div>
+            <small>@thread.Content</small>
+            @if (!string.IsNullOrEmpty(thread.RealFileName))
+            {
+                <br />
+                <small>
+                    <a href="@Configuration.CHAT_FILE_PATH@thread.SavedFileName" download="@thread.RealFileName">
+                        @thread.RealFileName
+                        <img src="~/Content/Download.png" />
+                    </a>
+                </small>
+            }
+        </div>
+    </div>
+}

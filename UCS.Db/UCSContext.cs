@@ -9,7 +9,8 @@ namespace UCS.Db
         public DbSet<Student> Students { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<MessageFile> MessageFiles { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<ChatFile> ChatFiles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<StudentCategory> StudentCategories { get; set; }

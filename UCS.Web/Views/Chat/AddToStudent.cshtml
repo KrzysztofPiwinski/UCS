@@ -1,0 +1,33 @@
+﻿@model ChatFormViewModel
+@using UCS.Web.ViewModels
+
+@using (Html.BeginForm("AddToStudent", "Chat", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    if (Model.HasError)
+    {
+        <div class="row validation-box">
+            <div class="col-sm-6 col-xs-12">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+    }
+
+    <div class="row blue-box">
+        <div class="col-sm-12">
+            @Html.DropDownListFor(m => m.Student, Model.Students)
+        </div>
+        <div class="col-sm-12">
+            @Html.TextBoxFor(m => m.Title, new { @placeholder = "Podaj tytuł wiadomości..." })
+        </div>
+        <div class="col-sm-12">
+            @Html.TextAreaFor(m => m.Content, new { @placeholder = "Podaj treść wiadomości..." })
+        </div>
+        <div class="col-sm-12">
+            @Html.TextBoxFor(m => m.File, new { @type = "file" })
+        </div>
+        <div class="col-sm-3 col-sm-push-9">
+            <input type="submit" class="btn btn-block" value="Wyślij wiadomość" />
+        </div>
+    </div>
+}

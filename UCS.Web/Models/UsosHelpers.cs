@@ -31,9 +31,7 @@ namespace UCS.Web.Models
             using (HttpClient httpClient = new HttpClient())
             {
                 HttpResponseMessage response = httpClient.GetAsync(requestUrl).Result;
-
                 string responseData = response.Content.ReadAsStringAsync().Result;
-
                 Dictionary<string, string> data = GetKeyData(responseData);
 
                 string a = data["oauth_token"];

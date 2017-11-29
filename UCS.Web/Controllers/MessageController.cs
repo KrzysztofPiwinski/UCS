@@ -39,10 +39,7 @@ namespace UCS.Web.Controllers
                 return RedirectToAction("Menu", "Home");
             }
 
-            if (page < 1)
-            {
-                page = 1;
-            }
+            page = Math.Max(page, 1);
 
             List<Message> messagesDb;
             if (_permission.Contains(PermissionEnum.VIEW_ALL_EMAIL))
@@ -54,13 +51,13 @@ namespace UCS.Web.Controllers
                 messagesDb = _administrator.Messages.ToList();
             }
 
-            int pageCount = (int)Math.Ceiling(messagesDb.Count / (double)Configuration.PageSize);
+            int pageCount = (int)Math.Ceiling(messagesDb.Count / (double)Configuration.PAGE_SIZE);
 
             if (pageCount > 0 && pageCount < page)
             {
                 page = pageCount;
             }
-            messagesDb = messagesDb.OrderByDescending(m => m.AddedAt).Skip((page - 1) * Configuration.PageSize).Take(Configuration.PageSize).ToList();
+            messagesDb = messagesDb.OrderByDescending(m => m.AddedAt).Skip((page - 1) * Configuration.PAGE_SIZE).Take(Configuration.PAGE_SIZE).ToList();
 
             MessagesViewModel model = MessagesViewModel.FromDb(messagesDb);
             model.CurrentPage = page;
@@ -105,6 +102,7 @@ namespace UCS.Web.Controllers
             {
                 ModelState.AddModelError("", "Należy podać tytuł wiadomości");
             }
+
             if (string.IsNullOrEmpty(model.Content))
             {
                 ModelState.AddModelError("", "Należy podać treść wiadomości");
@@ -112,7 +110,6 @@ namespace UCS.Web.Controllers
 
             int categoryId;
             int.TryParse(model.Category, out categoryId);
-
             if (_categoryRepository.GetById(categoryId) == null)
             {
                 ModelState.AddModelError("", "Nieprawidłowa kategoria wiadomości");
@@ -130,7 +127,7 @@ namespace UCS.Web.Controllers
                         UserId = _administrator.Id
                     };
 
-                    httpClient.BaseAddress = new Uri("http://localhost:53645/");
+                    httpClient.BaseAddress = new Uri(Configuration.API_ADDRESS);
 
                     StringContent content = new StringContent(JsonConvert.SerializeObject(messageDTO), Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await httpClient.PostAsync("message/", content);
@@ -156,6 +153,7 @@ namespace UCS.Web.Controllers
 
             model.HasError = true;
             model.UserName = GetEmail();
+            model.Categories = GetCategories();
             return View("_Form", model);
         }
 

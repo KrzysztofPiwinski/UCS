@@ -1,28 +1,21 @@
-﻿using System;
-using UCS.Db.Entities;
+﻿using UCS.Db.Entities;
 
 namespace UCS.Web.Models
 {
-    public class EnumHelpers
+    public static class EnumHelpers
     {
-        public static string GetPermissionDescription(string value)
+        public static string GetDescription(this PermissionEnum permission)
         {
-            int p = (int)Enum.Parse(typeof(PermissionEnum), value);
-
-            switch (p)
+            switch (permission)
             {
-                case 0:
-                    return "Zarządzanie pracownikami";
-                case 1:
-                    return "Zarządzanie studentami";
-                case 2:
-                    return "Zarządzanie kategoriami wiadomości e-mail";
-                case 3:
-                    return "Wysyłanie wiadomości e-mail";
-                default:
-                    return "";
+                case PermissionEnum.USERS: return "Zarządzanie pracownikami";
+                case PermissionEnum.STUDENTS: return "Zarządzanie studentami";
+                case PermissionEnum.CATEGORIES: return "Zarządzanie kategoriami wiadomości e-mail";
+                case PermissionEnum.SEND_EMAIL: return "Wysyłanie wiadomości e-mail";
+                case PermissionEnum.VIEW_ALL_EMAIL: return "Wyświetlanie wszystkich wiadomości e-mail";
+                case PermissionEnum.CHAT: return "Wysyłanie wiadomości chat";
+                default: return string.Empty;
             }
         }
-
     }
 }

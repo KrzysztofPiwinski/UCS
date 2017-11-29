@@ -58,11 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Chat.cs" />
     <Compile Include="Entities\StudentCategory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Message.cs" />
-    <Compile Include="Entities\MessageFile.cs" />
+    <Compile Include="Entities\ChatFile.cs" />
     <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\PermissionEnum.cs" />
     <Compile Include="Entities\Student.cs" />

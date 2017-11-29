@@ -51,7 +51,7 @@ namespace UCS.Web.Controllers
 
             UserFormViewModel model = new UserFormViewModel();
             model.UserName = GetEmail();
-            model.AllPermissions = GetAllPermissions();
+            model.AllPermissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>().ToList();
             model.HasError = false;
             model.ActionType = ActionTypeEnum.ADD;
             return View("_Form", model);
@@ -75,10 +75,12 @@ namespace UCS.Web.Controllers
             {
                 ModelState.AddModelError("", "Należy podać imię");
             }
+
             if (string.IsNullOrEmpty(model.LastName))
             {
                 ModelState.AddModelError("", "Należy podać nazwisko");
             }
+
             if (string.IsNullOrEmpty(model.Email))
             {
                 ModelState.AddModelError("", "Należy podać adres e-mail");
@@ -90,18 +92,22 @@ namespace UCS.Web.Controllers
                     ModelState.AddModelError("", "Należy podać prawidłowy adres e-mail");
                 }
             }
+
             if (string.IsNullOrEmpty(model.Password))
             {
                 ModelState.AddModelError("", "Należy podać hasło");
             }
+
             if (string.IsNullOrEmpty(model.ConfirmPassword))
             {
                 ModelState.AddModelError("", "Należy potwierdzić hasło");
             }
+
             if (model.Password != model.ConfirmPassword)
             {
                 ModelState.AddModelError("", "Potwierdzenie nie jest zgodne z nowym hasłem");
             }
+
             if (_repository.GetByUserName(model.Email) != null)
             {
                 ModelState.AddModelError("", "Konto z podanym adresem e-mail już istnieje");
@@ -109,12 +115,12 @@ namespace UCS.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                model.AllPermissions = GetAllPermissions();
-                model.UserPermission = new List<string>();
+                model.AllPermissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>().ToList();
+                model.UserPermission = new List<PermissionEnum>();
 
-                foreach (string permission in model.AllPermissions)
+                foreach (PermissionEnum permission in model.AllPermissions)
                 {
-                    string p = formCollection[permission];
+                    string p = formCollection[permission.ToString()];
                     if (p.StartsWith("true"))
                     {
                         model.UserPermission.Add(permission);
@@ -132,11 +138,11 @@ namespace UCS.Web.Controllers
                     Permissions = new List<Permission>()
                 };
 
-                foreach (string permission in model.UserPermission)
+                foreach (PermissionEnum permission in model.UserPermission)
                 {
                     Permission permissionDb = new Permission()
                     {
-                        Permiss = (PermissionEnum)Enum.Parse(typeof(PermissionEnum), permission)
+                        Permiss = permission
                     };
                     userDb.Permissions.Add(permissionDb);
                 }
@@ -154,7 +160,7 @@ namespace UCS.Web.Controllers
             }
 
             model.UserName = GetEmail();
-            model.AllPermissions = GetAllPermissions();
+            model.AllPermissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>().ToList();
             model.HasError = true;
             model.ActionType = ActionTypeEnum.ADD;
             return View("_Form", model);
@@ -175,7 +181,7 @@ namespace UCS.Web.Controllers
             User userDb = _repository.GetById(id);
             UserFormViewModel model = UserFormViewModel.FromDb(userDb);
             model.UserName = GetEmail();
-            model.AllPermissions = GetAllPermissions();
+            model.AllPermissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>().ToList();
             model.ActionType = ActionTypeEnum.EDIT;
             return View("_Form", model);
         }
@@ -204,10 +210,12 @@ namespace UCS.Web.Controllers
             {
                 ModelState.AddModelError("", "Należy podać imię");
             }
+
             if (string.IsNullOrEmpty(model.LastName))
             {
                 ModelState.AddModelError("", "Należy podać nazwisko");
             }
+
             if (string.IsNullOrEmpty(model.Email))
             {
                 ModelState.AddModelError("", "Należy podać adres e-mail");
@@ -222,12 +230,12 @@ namespace UCS.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                model.AllPermissions = GetAllPermissions();
-                model.UserPermission = new List<string>();
+                model.AllPermissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>().ToList();
+                model.UserPermission = new List<PermissionEnum>();
 
-                foreach (string permission in model.AllPermissions)
+                foreach (PermissionEnum permission in model.AllPermissions)
                 {
-                    string p = formCollection[permission];
+                    string p = formCollection[permission.ToString()];
                     if (p.StartsWith("true"))
                     {
                         model.UserPermission.Add(permission);
@@ -242,11 +250,11 @@ namespace UCS.Web.Controllers
                 userDb.UserName = model.Email;
                 userDb.IsActive = model.IsActive;
 
-                foreach (string permission in model.UserPermission)
+                foreach (PermissionEnum permission in model.UserPermission)
                 {
                     Permission permissionDb = new Permission()
                     {
-                        Permiss = (PermissionEnum)Enum.Parse(typeof(PermissionEnum), permission)
+                        Permiss = permission
                     };
                     userDb.Permissions.Add(permissionDb);
                 }
@@ -257,7 +265,7 @@ namespace UCS.Web.Controllers
             else
             {
                 model.UserName = GetEmail();
-                model.AllPermissions = GetAllPermissions();
+                model.AllPermissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>().ToList();
                 model.HasError = true;
                 model.ActionType = ActionTypeEnum.EDIT;
                 return View("_Form", model);
@@ -285,18 +293,6 @@ namespace UCS.Web.Controllers
             string password = _repository.ResetPassword(userDb);
             Session[Configuration.Information] = $"Hasło dla użytkownika {userDb.Email} zostało zresetowane. Aktualne hasło to {password}.";
             return RedirectToAction("Index");
-        }
-
-        private List<string> GetAllPermissions()
-        {
-            List<string> permissions = new List<string>();
-
-            foreach (PermissionEnum permission in Enum.GetValues(typeof(PermissionEnum)))
-            {
-                permissions.Add(permission.ToString());
-            }
-
-            return permissions;
         }
     }
 }

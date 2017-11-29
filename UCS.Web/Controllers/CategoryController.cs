@@ -131,6 +131,7 @@ namespace UCS.Web.Controllers
             {
                 return RedirectToAction("Menu", "Home");
             }
+
             if (string.IsNullOrEmpty(model.Name))
             {
                 ModelState.AddModelError("", "Należy podać nazwę kategorii.");

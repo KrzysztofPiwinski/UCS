@@ -29,8 +29,8 @@ namespace UCS.Web.Models.Repositories
             return _context.Students
                 .OrderBy(s => s.DeletedAt.HasValue)
                 .ThenBy(s => s.UserName)
-                .Skip((page - 1) * Configuration.PageSize)
-                .Take(Configuration.PageSize)
+                .Skip((page - 1) * Configuration.PAGE_SIZE)
+                .Take(Configuration.PAGE_SIZE)
                 .ToList();
         }
 

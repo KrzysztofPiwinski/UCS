@@ -6,8 +6,8 @@
     @Html.AntiForgeryToken()
     if (Model.HasError)
     {
-        <div class="row">
-            <div class="col-sm-6 col-xs-12 validation-box">
+        <div class="row validation-box">
+            <div class="col-sm-6 col-xs-12">
                 @Html.ValidationSummary()
             </div>
         </div>
@@ -20,7 +20,7 @@
             @Html.TextAreaFor(m => m.Content, new { @placeholder = "Podaj treść wiadomości..." })
         </div>
         <div class="col-sm-6 col-sm-offset-6 col-sm-pull-6">
-            @Html.DropDownListFor(m => m.Category, Model.Categories)
+            @Html.DropDownListFor(m => m.Category, Model.Categories, "Wybierz kategorię wiadomości...")
         </div>
         <div class="col-sm-3 col-sm-push-9">
             <input type="submit" class="btn btn-block" value="Wyślij wiadomość" />

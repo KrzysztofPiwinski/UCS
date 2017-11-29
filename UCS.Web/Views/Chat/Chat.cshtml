@@ -1,0 +1,48 @@
+﻿@model ChatsViewModel
+@using UCS.Web.ViewModels
+
+<div class="row chat">
+    <div class="col-sm-12">
+        <h2>Temat wiadomości: @Model.Title</h2>
+    </div>
+</div>
+<div class="row chat" id="chats">
+</div>
+<div class="row chat">
+    @using (Ajax.BeginForm("Add", "Chat", new AjaxOptions { OnSuccess = "Success" }))
+    {
+        @Html.Hidden("parentId", Model.ParentChatId)
+        <div class="col-sm-12">
+            @Html.TextArea("content", new { @placeholder = "Podaj treść wiadomości..." })
+        </div>
+        <div class="col-sm-3 col-sm-push-9">
+            <input type="submit" class="btn btn-block" value="Wyślij" />
+        </div>
+    }
+</div>
+
+
+@section scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function updateScroll() {
+            $("#chats").scrollTop(1E10);
+        }
+
+        function reloadRequests() {
+            $("#chats").load('@(Url.Action("GetAwaitChatThread", "Chat", new { id = Model.ParentChatId }))');
+        }
+
+        function Success() {
+            reloadRequests();
+            setTimeout(updateScroll, 150);
+            this.reset();
+        }
+
+        $(function () {
+            reloadRequests();
+            setTimeout(updateScroll, 150);
+            setInterval(reloadRequests, 5000);
+        });
+    </script>
+}
